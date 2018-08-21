@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'antd';
 import { hot } from 'react-hot-loader';
 
 class App extends Component {
@@ -6,6 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         hello world!
+        <Button>click</Button>
       </div>
     );
   }
