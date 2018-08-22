@@ -11,6 +11,8 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const baseConfig = require('./webpack.config.base');
+const merge = require('webpack-merge');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -25,7 +27,7 @@ const env = getClientEnvironment(publicUrl);
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
-module.exports = {
+module.exports = merge(baseConfig, {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
   devtool: 'cheap-module-source-map',
@@ -260,4 +262,4 @@ module.exports = {
   performance: {
     hints: false,
   },
-};
+});

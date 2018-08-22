@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Button } from 'antd';
+import React from 'react';
+import {Router, Route} from 'react-router';
+import createHistory from "history/createBrowserHistory";
+import routeConfig from '@router/config'
 import { hot } from 'react-hot-loader';
+const history = createHistory();
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        hello world!
-        <Button>click</Button>
-      </div>
-    );
-  }
+const App = () => { 
+  return <Router history={history}>
+    {routeConfig.map((route) => {
+      <Route />
+    })}
+  </Router>
 }
 
 export default hot(module)(App);
