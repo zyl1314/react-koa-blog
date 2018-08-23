@@ -1,27 +1,17 @@
 import React from 'react';
-import {Router, Route} from 'react-router';
-import createHistory from "history/createBrowserHistory";
-import routeConfig from '@router/config';
-import AuthorizeRoute from '@router/authorizeRoute';
-import DynamicWrap from '@router/dynamicWrap';
-import Header from '@views/common/header';
+import {Router, Switch, Route} from 'react-router';
+import createHashHistory from "history/createHashHistory";
+import DynamicWrap from '@components/dynamicWrap';
 import { hot } from 'react-hot-loader';
 
-const history = createHistory();
+const history = createHashHistory();
 
 const App = () => (
   <Router history={history}>
-    {/* {routeConfig.map(route => 
-      <AuthorizeRoute 
-        path={route.path}
-        name={route.name}
-        authority={route.authority}
-        component={<DynamicWrap component={route.component} />} 
-        redirect="/user"
-      />
-    )}     */}
-    <Roure path="/login" render={() => <DynamicWrap component={() => import('@layout/userLayout')}/>} />
-    <Route path="/" render={() => <DynamicWrap component={() => import('@layout/basicLayout')}/>} />
+    <Switch>
+      <Route key="login" path="/login" render={(props) => <DynamicWrap {...props} load={() => import('@layout/loginLayout')}/>} />
+      <Route key="basic" path="/" render={(props) => <DynamicWrap {...props} load={() => import('@layout/basicLayout')}/>} />
+    </Switch>
   </Router>
 ) 
 
