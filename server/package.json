@@ -1,0 +1,21 @@
+{
+  "name": "react-koa-blog-server",
+  "version": "1.0.0",
+  "description": "react-koa-blog-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa",
+    "react"
+  ],
+  "author": "zhangyalong@zhuanzhuan.com",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "mongodb": "^3.1.3"
+  }
+}
