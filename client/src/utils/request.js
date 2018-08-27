@@ -22,16 +22,16 @@ const checkStatus = (response) => {
   }
   const errortext = codeMessage[response.status] || response.statusText;
   const error = new Error(errortext);
-  err.name = response.status;
-  err.response = response;
+  error.name = response.status;
+  error.response = response;
   throw error;
 };
 
-export default request = (url, options) => {
+export default function request(url, options) {
   const defaultOptions = {
     credentials: 'include',
   }
-  const newOptions = { ...defaultOptions, options };
+  const newOptions = { ...defaultOptions, ...options };
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
     newOptions.headers = {
       'Content-Type': 'application/json; charset=utf-8',

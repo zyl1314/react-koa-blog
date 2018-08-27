@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Menu, Button, Dropdown, Avatar } from 'antd';
+import { logout } from '@utils/auth';
 import menuConfig from './config';
 import './index.css';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   menuClick = (e) => {
     const { history } = this.props;
     const path = `/${e.key}`;
@@ -21,11 +18,8 @@ class Header extends Component {
   }
 
   logout = () => {
-    const { dispatch, history } = this.props;
-    dispatch({
-      type: 'USER_LOGOUT'
-    })
-    localStorage.removeItem('_react_koa_blog_user');
+    const { history } = this.props;
+    logout();
     history.push('/index');
   }
 
@@ -56,16 +50,16 @@ class Header extends Component {
           </Menu>
         </div>
         {
-          auth == 'user' ? (
+          auth === 'user' ? (
             <div>
               <Dropdown overlay={menu}>
-                <Avatar src={'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2512956818,1936707538&fm=58&bpow=640&bpoh=820'} />
+                <Avatar style={{backgroundColor: "#1890ff"}}>{user.username}</Avatar>
               </Dropdown>
             </div>
           ) : (
             <div>
               <Button type="primary" onClick={() => this.login('login')}>登录</Button>
-              <Button className="margin-left" onClick={() => this.login('register')}>注册</Button>
+              <Button className="margin-left" onClick={() => this.login('registe')}>注册</Button>
             </div>
           )
         }
@@ -77,7 +71,7 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    auth: state.user.uid ? 'user' : 'guest'
+    auth: state.user._id ? 'user' : 'guest'
   }
 } 
 export default connect(mapStateToProps)(Header);

@@ -7,10 +7,6 @@ import routerConfig from "./config";
 import './index.css';
 
 class BasicLayout extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { load, ...rest } = this.props;
     return (

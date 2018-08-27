@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 
 class AuthorizeRoute extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { path, auths, render, redirect, currentAuth  } = this.props;
     if (auths.includes(currentAuth)) {
@@ -19,7 +15,7 @@ class AuthorizeRoute extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentAuth: state.user.uid ? 'user' : 'guest'
+    currentAuth: state.user._id ? 'user' : 'guest'
   }
 }
 
